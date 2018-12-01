@@ -1,4 +1,4 @@
-﻿namespace Blog.Data.Models
+﻿namespace Blog.Data.Model
 {
     public class Phone
     {
