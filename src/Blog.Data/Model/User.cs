@@ -4,6 +4,12 @@ namespace Blog.Data.Model
 {
     public class User : ICopiableModel<User>
     {
+        public User()
+        {
+            Adresses = new List<Address>();
+            Phones = new List<Phone>();
+        }
+
         public int UserId { get; set; }
         public string Name { get; set; }
         public string UserName { get; set; }

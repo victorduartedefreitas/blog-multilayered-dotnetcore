@@ -55,7 +55,10 @@ namespace Blog.Data.Components.Repository
 
             if (isNewRecord)
             {
-                comment.CommentId = DbContext.Instance
+                if (DbContext.Instance.Comments.Count == 0)
+                    comment.CommentId = 1;
+                else
+                    comment.CommentId = DbContext.Instance
                     .Comments
                     .OrderBy(f => f.CommentId)
                     .Last()

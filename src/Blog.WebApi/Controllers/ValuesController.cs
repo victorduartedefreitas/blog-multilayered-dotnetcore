@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Business.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.WebApi.Controllers
 {
@@ -10,10 +12,25 @@ namespace Blog.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        IUserService _userService;
+
+        public ValuesController(IServiceProvider serviceProvider)
+        {
+            _userService = serviceProvider.GetService<IUserService>();
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _userService.CreateNewUser(new Data.Model.User
+            {
+                UserId = 1,
+                UserName = "victor",
+                Name = "Victor Duarte de Freitas",
+                Email = "victorduartedefreitas@gmail.com"
+            });
+
             return new string[] { "value1", "value2" };
         }
 
@@ -28,6 +45,7 @@ namespace Blog.WebApi.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            
         }
 
         // PUT api/values/5

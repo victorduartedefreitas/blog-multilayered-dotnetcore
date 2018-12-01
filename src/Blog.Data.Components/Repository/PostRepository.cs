@@ -74,7 +74,10 @@ namespace Blog.Data.Components.Repository
 
             if (isNewRecord)
             {
-                post.PostId = DbContext.Instance
+                if (DbContext.Instance.Posts.Count == 0)
+                    post.PostId = 1;
+                else
+                    post.PostId = DbContext.Instance
                     .Posts
                     .OrderBy(f => f.PostId)
                     .Last()

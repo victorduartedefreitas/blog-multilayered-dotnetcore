@@ -23,8 +23,12 @@ namespace Blog.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //Configuração das injeções de dependências do projeto
             services.AddRepositories();
+            services.AddBusinessServices();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

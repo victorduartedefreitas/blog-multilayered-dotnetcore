@@ -45,11 +45,14 @@ namespace Blog.Data.Components.Repository
 
             if (isNewRecord)
             {
-                user.UserId = DbContext.Instance
-                    .Users
-                    .OrderBy(f => f.UserId)
-                    .Last()
-                    .UserId + 1;
+                if (DbContext.Instance.Users.Count == 0)
+                    user.UserId = 1;
+                else
+                    user.UserId = DbContext.Instance
+                        .Users
+                        .OrderBy(f => f.UserId)
+                        .Last()
+                        .UserId + 1;
 
                 DbContext.Instance
                     .Users
