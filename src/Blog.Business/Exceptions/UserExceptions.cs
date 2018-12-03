@@ -4,6 +4,19 @@ namespace Blog.Business.Exceptions
 {
     public class UserException : BusinessException
     {
+        public UserException(UserExceptionType exceptionType)
+            : this(exceptionType, null)
+        {
+        }
+
+        public UserException(UserExceptionType exceptionType, Exception baseException)
+            : base(exceptionType, baseException)
+        {
+        }
+    }
+
+    public class UserExceptionType : BusinessExceptionType
+    {
         public static UserExceptionType DefaultException
             = new UserExceptionType("001.000", "Verifique a propriedade 'BaseException' para maiores detalhes.");
 
@@ -22,19 +35,6 @@ namespace Blog.Business.Exceptions
         public static UserExceptionType NullObject
             = new UserExceptionType("001.005", "Objeto 'user' não pode ser nulo.");
 
-        public UserException(UserExceptionType exceptionType)
-            : this(exceptionType, null)
-        {
-        }
-
-        public UserException(UserExceptionType exceptionType, Exception baseException)
-            : base(exceptionType, baseException)
-        {
-        }
-    }
-
-    public class UserExceptionType : BusinessExceptionType
-    {
         public UserExceptionType(string exceptionCode, string defaultMessage)
             : base(exceptionCode, defaultMessage)
         {

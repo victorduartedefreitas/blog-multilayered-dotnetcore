@@ -6,6 +6,7 @@ namespace Blog.Business.Services
     public interface IUserService
     {
         OperationResult CreateNewUser(User user);
+        OperationResult UpdateUser(User user);
         UserOperationResult GetUserByEmail(string email);
         UserOperationResult GetUserByUserId(int userId);
         OperationResult DeleteUserByUserId(int userId);

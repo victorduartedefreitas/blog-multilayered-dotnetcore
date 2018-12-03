@@ -29,13 +29,13 @@ namespace Blog.Business.Components.Services
         public OperationResult CreateNewUser(User user)
         {
             if (user == null)
-                throw new UserException(UserException.NullObject);
+                throw new UserException(UserExceptionType.NullObject);
             else if (string.IsNullOrWhiteSpace(user.Name))
-                throw new UserException(UserException.NullName);
+                throw new UserException(UserExceptionType.NullName);
             else if (string.IsNullOrWhiteSpace(user.UserName))
-                throw new UserException(UserException.NullUserName);
+                throw new UserException(UserExceptionType.NullUserName);
             else if (string.IsNullOrWhiteSpace(user.Email))
-                throw new UserException(UserException.NullEmail);
+                throw new UserException(UserExceptionType.NullEmail);
 
             try
             {
@@ -44,14 +44,14 @@ namespace Blog.Business.Components.Services
             }
             catch (Exception ex)
             {
-                throw new UserException(UserException.DefaultException, ex);
+                throw new UserException(UserExceptionType.DefaultException, ex);
             }
         }
 
         public OperationResult DeleteUserByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
-                throw new UserException(UserException.NullEmail);
+                throw new UserException(UserExceptionType.NullEmail);
 
             try
             {
@@ -64,14 +64,14 @@ namespace Blog.Business.Components.Services
             }
             catch (Exception ex)
             {
-                throw new UserException(UserException.DefaultException, ex);
+                throw new UserException(UserExceptionType.DefaultException, ex);
             }
         }
 
         public OperationResult DeleteUserByUserId(int userId)
         {
             if (userId <= 0)
-                throw new UserException(UserException.NullUserId);
+                throw new UserException(UserExceptionType.NullUserId);
 
             try
             {
@@ -80,14 +80,14 @@ namespace Blog.Business.Components.Services
             }
             catch (Exception ex)
             {
-                throw new UserException(UserException.DefaultException, ex);
+                throw new UserException(UserExceptionType.DefaultException, ex);
             }
         }
 
         public UserOperationResult GetUserByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
-                throw new UserException(UserException.NullEmail);
+                throw new UserException(UserExceptionType.NullEmail);
 
             try
             {
@@ -99,14 +99,14 @@ namespace Blog.Business.Components.Services
             }
             catch (Exception ex)
             {
-                throw new UserException(UserException.DefaultException, ex);
+                throw new UserException(UserExceptionType.DefaultException, ex);
             }
         }
 
         public UserOperationResult GetUserByUserId(int userId)
         {
             if (userId <= 0)
-                throw new UserException(UserException.NullUserId);
+                throw new UserException(UserExceptionType.NullUserId);
 
             try
             {
@@ -118,7 +118,29 @@ namespace Blog.Business.Components.Services
             }
             catch (Exception ex)
             {
-                throw new UserException(UserException.DefaultException, ex);
+                throw new UserException(UserExceptionType.DefaultException, ex);
+            }
+        }
+
+        public OperationResult UpdateUser(User user)
+        {
+            if (user == null)
+                throw new UserException(UserExceptionType.NullObject);
+            else if (string.IsNullOrWhiteSpace(user.Name))
+                throw new UserException(UserExceptionType.NullName);
+            else if (string.IsNullOrWhiteSpace(user.UserName))
+                throw new UserException(UserExceptionType.NullUserName);
+            else if (string.IsNullOrWhiteSpace(user.Email))
+                throw new UserException(UserExceptionType.NullEmail);
+
+            try
+            {
+                var result = _userRepository.Save(user);
+                return new OperationResult(result, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                throw new UserException(UserExceptionType.DefaultException, ex);
             }
         }
 
