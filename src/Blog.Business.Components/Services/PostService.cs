@@ -70,7 +70,7 @@ namespace Blog.Business.Components.Services
             if (page <= 0)
                 throw new PostException(PostExceptionType.NullPage);
 
-            int limit = 5,
+            int limit = 1,
                 skip = limit * (page - 1);
 
             try

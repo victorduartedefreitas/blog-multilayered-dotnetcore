@@ -39,7 +39,7 @@ namespace Blog.WebApi.Controllers
         #region API Methods
 
         [HttpGet("GetNextPosts")]
-        public ActionResult GetNextPosts(int page)
+        public IActionResult GetNextPosts(int page)
         {
             var postsResult = _postService.GetLatestPosts(page);
             if (!postsResult.Success)

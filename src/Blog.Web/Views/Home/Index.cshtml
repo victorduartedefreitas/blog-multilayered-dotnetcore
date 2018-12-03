@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Postagens</h2>
+        @{
+            if (TempData["CurrentPosts"] != null)
+            {
+                var posts = (List<PostDTO>)TempData["CurrentPosts"];
+                foreach (PostDTO post in posts)
+                {
+                    <h3>@post.Title</h3>
+                    <h5>Autor: @post.UserName</h5>
+                    <p>@post.Body</p>
+
+                    <h3>Comentários:</h3>
+                    foreach (CommentDTO comment in post.Comments)
+                    {
+                        <h4>Nome: @comment.Name</h4>
+                        <p>@comment.Body</p>
+                    }
+
+                    <p>============================================================</p>
+                }
+            }
+        }
+
+        <input type="hidden" id="txtNumPagina" value="@ViewBag.CurrentPage" />
+
+        <button type="button" id="btnPrevious" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Home", new { page = ViewBag.CurrentPage - 1 })'">< Anterior</button>
+        <button type="button" id="btnNext" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Home", new { page = ViewBag.CurrentPage + 1 })'">Próximo ></button>
+    </div>
+</div>
