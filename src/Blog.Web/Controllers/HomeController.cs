@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Blog.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Blog.Web.Models;
-using System.Net.Http;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace Blog.Web.Controllers
 {
@@ -22,13 +17,14 @@ namespace Blog.Web.Controllers
 
         private List<PostDTO> LoadPosts(int page)
         {
-            HttpClient client = new HttpClient();
+            List<PostDTO> posts = new List<PostDTO>();
 
-            client.BaseAddress = new Uri(configuration.GetValue<string>("ApiBlog:MainUrl"));
-            string getNextPostsRoute = string.Format(configuration.GetValue<string>("ApiBlog:GetNextPostsRoute"), page);
+            bool isOnline = configuration.GetValue<bool>("ApiBlog:IsOnline");
 
-            HttpResponseMessage response = client.GetAsync(getNextPostsRoute).Result;
-            var posts = JsonConvert.DeserializeObject<List<PostDTO>>(response.Content.ReadAsStringAsync().Result);
+            if (isOnline)
+                posts = Services.PostService.LoadPostsFromWebService(configuration, page);
+            else
+                posts = Services.PostService.LoadPostsFromCache(page);
 
             if (TempData["CurrentPosts"] == null)
                 TempData["CurrentPosts"] = posts;
