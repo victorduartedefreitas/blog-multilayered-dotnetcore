@@ -31,6 +31,7 @@ Organização da solução:
   
 - Blog.WebApi:
   - WebApi em .Net Core para acesso às funcionalidades do blog;
+  - Pode ser testado via Swagger (incluso);
   
 - Blog.Web:
   - Projeto Web de testes para visualizar os posts do blog, por meio da WebApi;
