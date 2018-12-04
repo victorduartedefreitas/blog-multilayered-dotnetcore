@@ -3,36 +3,36 @@ Aplicação de exemplo de um blog utilizando WPF e WebApi .Net Core com algumas 
 
 Organização da solução:
 
-Blog.Data
+- Blog.Data
   - Modelos de dados;
   - Interfaces dos repositórios;
   - Contexto de acesso a dados;
   
   Este projeto separado possibilita a criação de plugins que implementem os repositórios separadamente.
   
-Blog.Data.Components:
+- Blog.Data.Components:
   - Implementações dos repositórios;
   
-Blog.Data.IoC:
+- Blog.Data.IoC:
   - Inversão de controle para os repositórios;
   
-Blog.Business:
+- Blog.Business:
   - Exceções de negócio;
   - Modelos de negócio;
   - Interfaces para os serviços;
   
   Este projeto separado possibilita a criação de plugins que implementem os serviços separadamente.
   
-Blog.Business.Components:
+- Blog.Business.Components:
   - Implementação dos serviços;
   
- Blog.Business.IoC:
+- Blog.Business.IoC:
   - Inversão de controle para os serviços;
   
- Blog.WebApi:
+- Blog.WebApi:
   - WebApi em .Net Core para acesso às funcionalidades do blog;
   
- Blog.Web:
+- Blog.Web:
   - Projeto Web de testes para visualizar os posts do blog, por meio da WebApi;
   - Cache: Implementação de cache em lista para possibilitar navegação offline.
     Para simular o serviço fora do ar, basta alternar o valor da variável "IsOnline" no arquivo "appsettings.json" durante a execução do Blog.Web.
