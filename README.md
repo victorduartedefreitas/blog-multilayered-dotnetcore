@@ -1,5 +1,5 @@
 # exemploBlog
-Aplicação de exemplo de um blog utilizando WPF e WebApi .Net Core com algumas das boas práticas do mercado.
+Aplicação de exemplo de um blog utilizando .Net Core, WebApi e Asp.Net MVC, com o intuito de exemplificar o uso de injeção de dependência, divisão em camadas, padrões de projeto e algumas boas práticas de mercado.
 
 Organização da solução:
 
