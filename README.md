@@ -1,4 +1,4 @@
-# exemploBlog
+# blog-multilayered-dotnetcore
 ##### :+1: Projeto concluído
 Aplicação de exemplo de um blog utilizando .Net Core, WebApi e Asp.Net MVC, com o intuito de exemplificar o uso de injeção de dependência, divisão em camadas, padrões de projeto e algumas boas práticas de mercado.
 
